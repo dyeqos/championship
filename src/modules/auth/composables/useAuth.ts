@@ -1,7 +1,7 @@
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
 import { loginApi, registerApi } from '../services/authService';
-import { setAuthSession } from '../../../tools/utils/TokenUtil';
+import { setAuthSession } from '../../../tools/utils/tokenUtil';
 
 export const useAuth = () => {
   const router = useRouter();

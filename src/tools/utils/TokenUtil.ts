@@ -1,4 +1,4 @@
-import type { AuthUser, AuthSession } from '../../types/auth';
+import type { AuthUser, AuthSession } from '../../interfaces/authInterface';
 
 const AUTH_TOKEN_KEY = 'auth.token';
 const AUTH_USER_KEY = 'auth.user';

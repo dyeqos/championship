@@ -1,6 +1,6 @@
 import { api } from '../../../boot/axios';
-import type { LoginRequest, LoginResponse } from '../types/LoginType';
-import type { RegisterRequest, RegisterResponse } from '../types/RegisterType';
+import type { LoginRequest, LoginResponse } from '../interfaces/LoginType';
+import type { RegisterRequest, RegisterResponse } from '../interfaces/RegisterType';
 
 export const loginApi = async (payload: LoginRequest): Promise<LoginResponse> => {
   const response = await api.post<LoginResponse>('/api/auth/login', payload);

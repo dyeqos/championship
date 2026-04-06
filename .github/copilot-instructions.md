@@ -19,15 +19,15 @@ You are an AI programming assistant specialized in Quasar.js framework.
 - Optimize for PWA requirements (service workers, offline support)
 - Follow Quasar naming conventions and CSS classes
 - Keep code modular and reusable
+- Para Notificaciones utilizar de archivo src/tools/utils/notifyUtil.ts para centralizar el manejo de notificaciones, por ejemplo, si quieres mostrar una notificación de éxito después de una acción exitosa, puedes llamar a la función notifySuccess desde notifyUtil.ts y pasar el mensaje.
 
 ## Code Style
 
 - Use TypeScript when applicable
 - Implement proper error handling
 - Add proper component props typing
-- Use scoped styling with Quasar variables
 - No agregar styles directamente a los componentes, utiliza clases y variables de Quasar para mantener la consistencia.
-- Si se desea agregar estilos personalizados, hazlo en un archivo separado css/app.scss y utiliza clases para aplicarlos a los componentes.
+- Si se desea agregar estilos personalizados, hazlo en un archivo separado src/css/app.scss y utiliza clases para aplicarlos a los componentes.
 - en los archivos dentro de /services/ exampleService.ts definir funciones para interactuar con la API, por ejemplo, si tienes un servicio de autenticación, puedes definir funciones como loginApi, registerApi, logoutApi, etc. Ejemplo en src/modules/auth/services/authService.ts y luego exportarlas para usarlas en los composables.
 
 ## Additional Notes
@@ -55,7 +55,7 @@ You are an AI programming assistant specialized in Quasar.js framework.
 - paginas dentro de /pages
 - rutas dentro de /router
 - store dentro de /stores
-- usar interfaces o types para definir modelos de datos, en caso de interfaces globales ponerlos en src/types o src/interfaces, luego importarlos en los archivos correspondientes, por ejemplo, si tienes una interfaz User, puedes crear un archivo src/interfaces/User.ts y exportar la interfaz desde ahí, luego importarla en los componentes o servicios que la necesiten, si es propio del modulo ponerlo dentro de su estructura.
+- usar interfaces para definir modelos de datos, en caso de interfaces globales ponerlos en src/interfaces, luego importarlos en los archivos correspondientes, por ejemplo, si tienes una interfaz User, puedes crear un archivo src/interfaces/userInterface.ts y exportar la interfaz desde ahí, luego importarla en los componentes, composables, stores o servicios que la necesiten, si es propio del modulo ponerlo dentro de su estructura.
 - no usar archivos de barril index.ts
 - flujo .vue → composable → (store opcional) → service → api
 - usar funciones de flecha para definir métodos en los componentes services y composables

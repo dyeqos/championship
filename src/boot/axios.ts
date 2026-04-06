@@ -1,13 +1,9 @@
 import { defineBoot } from '#q-app/wrappers';
 import axios, { type AxiosInstance } from 'axios';
-import { Notify } from 'quasar';
-import { getAuthToken } from '../tools/utils/TokenUtil';
+import { getAuthToken } from '../tools/utils/tokenUtil';
+import { notifyError } from 'src/tools/utils/notifyUtil';
+import type { GlobalError } from 'src/interfaces/commonInterface';
 
-interface ErrorType {
-  message?: string[] | string;
-  error?: string;
-  statusCode?: number;
-}
 declare module 'vue' {
   interface ComponentCustomProperties {
     $axios: AxiosInstance;
@@ -39,15 +35,12 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (axios.isAxiosError(error)) {
-      const errData = error.response?.data as ErrorType | undefined;
+      const errData = error.response?.data as GlobalError | undefined;
 
       // Manejar errores globales, como 401 para logout
       if (error.response?.status === 401) {
         console.warn('Token expirado o inválido');
-        Notify.create({
-          type: 'negative',
-          message: 'Sesión expirada. Por favor inicie sesión nuevamente.',
-        });
+        notifyError('Sesión expirada. Por favor inicie sesión nuevamente.');
         // Aquí podrías hacer logout automático si tienes acceso al store
       }
 
@@ -55,35 +48,19 @@ api.interceptors.response.use(
       if (errData?.message) {
         const messages = Array.isArray(errData.message) ? errData.message : [errData.message];
         for (let i = 0; i < Math.min(messages.length, 3); i++) {
-          Notify.create({
-            type: 'negative',
-            message: messages[i]!,
-          });
+          notifyError(messages[i]!);
         }
       } else if (errData?.error) {
-        Notify.create({
-          type: 'negative',
-          message: errData.error,
-        });
+        notifyError(errData.error);
       } else {
         const fallbackMessage = error.response?.statusText || error.message || 'Error desconocido';
-        Notify.create({
-          type: 'negative',
-          message: fallbackMessage,
-        });
+        notifyError(fallbackMessage);
       }
     } else if (error instanceof Error) {
-      Notify.create({
-        type: 'negative',
-        message: error.message,
-      });
+      notifyError(error.message);
     } else {
-      Notify.create({
-        type: 'negative',
-        message: 'Error desconocido',
-      });
+      notifyError('Error desconocido');
     }
-
     return Promise.reject(error); // eslint-disable-line @typescript-eslint/prefer-promise-reject-errors
   },
 );

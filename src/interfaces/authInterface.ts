@@ -8,6 +8,3 @@ export interface AuthSession {
   fullName: string;
   token: string;
 }
-
-// Re-export del módulo auth
-export type { LoginRequest, LoginResponse } from '../modules/auth/types/LoginType';

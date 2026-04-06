@@ -1,1 +1,1 @@
-export type { Todo, Meta } from '../types/common';
+export type { Todo, Meta } from '../interfaces/commonInterface';
