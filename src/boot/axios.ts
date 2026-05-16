@@ -1,8 +1,8 @@
 import { defineBoot } from '#q-app/wrappers';
 import axios, { type AxiosInstance } from 'axios';
-import { getAuthToken } from '../tools/utils/tokenUtil';
-import { notifyError } from 'src/tools/utils/notifyUtil';
-import type { GlobalError } from 'src/interfaces/commonInterface';
+import { getAuthToken } from 'src/platform/tools/utils/TokenUtil';
+import { notifyError } from 'src/platform/tools/utils/NotifyUtil';
+import type { GlobalError } from 'src/platform/interfaces/GlobalInterface';
 
 declare module 'vue' {
   interface ComponentCustomProperties {

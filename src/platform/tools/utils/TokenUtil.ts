@@ -1,4 +1,4 @@
-import type { AuthUser, AuthSession } from '../../interfaces/authInterface';
+import type { AuthUser, AuthSession } from 'src/platform/interfaces/GlobalInterface';
 
 const AUTH_TOKEN_KEY = 'auth.token';
 const AUTH_USER_KEY = 'auth.user';

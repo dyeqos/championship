@@ -13,7 +13,7 @@ const $q = useQuasar();
 <template>
   <q-header elevated>
     <q-toolbar>
-      <q-btn flat dense round icon="menu" aria-label="Menu" @click="props.toggleLeftDrawer" />
+      <q-btn flat dense round icon="mdi-menu" aria-label="Menu" @click="props.toggleLeftDrawer" />
 
       <q-toolbar-title> Quasar App </q-toolbar-title>
 
