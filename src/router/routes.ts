@@ -3,15 +3,26 @@ import type { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    component: () => import('src/frame/layouts/FrameLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('src/modules/home/layouts/HomeLayout.vue'),
+        children: [
+          {
+            path: '',
+            component: () => import('src/modules/home/pages/HomePage.vue'),
+          },
+        ],
+      },
+    ],
   },
   {
     path: '/auth',
-    component: () => import('../modules/auth/layouts/MainLayout.vue'),
+    component: () => import('src/modules/auth/layouts/MainLayout.vue'),
     children: [
-      { path: 'login', component: () => import('../modules/auth/pages/LoginPage.vue') },
-      { path: 'register', component: () => import('../modules/auth/pages/RegisterPage.vue') },
+      { path: 'login', component: () => import('src/modules/auth/pages/LoginPage.vue') },
+      { path: 'register', component: () => import('src/modules/auth/pages/RegisterPage.vue') },
     ],
   },
 

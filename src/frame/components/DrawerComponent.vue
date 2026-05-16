@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
+import { type EssentialLinkProps } from '../interfaces/FrameInterface';
+import EssentialLink from './EssentialLink.vue';
 
 const leftDrawerOpen = defineModel<boolean>({ default: false });
 
