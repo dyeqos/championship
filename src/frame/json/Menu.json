@@ -1,44 +1,14 @@
 [
   {
-    "title": "Docs",
-    "caption": "quasar.dev",
-    "icon": "mdi-pencil",
-    "link": "https://quasar.dev"
+    "title": "Principal",
+    "caption": "Pantalla principal",
+    "icon": "mdi-home",
+    "name": "home"
   },
   {
-    "title": "Github",
-    "caption": "github.com/quasarframework",
-    "icon": "mdi-code-tags",
-    "link": "https://github.com/quasarframework"
-  },
-  {
-    "title": "Discord Chat Channel",
-    "caption": "chat.quasar.dev",
-    "icon": "mdi-chat",
-    "link": "https://chat.quasar.dev"
-  },
-  {
-    "title": "Forum",
-    "caption": "forum.quasar.dev",
-    "icon": "mdi-forum",
-    "link": "https://forum.quasar.dev"
-  },
-  {
-    "title": "Twitter",
-    "caption": "@quasarframework",
-    "icon": "mdi-rss",
-    "link": "https://twitter.quasar.dev"
-  },
-  {
-    "title": "Facebook",
-    "caption": "@QuasarFramework",
-    "icon": "mdi-facebook",
-    "link": "https://facebook.quasar.dev"
-  },
-  {
-    "title": "Quasar Awesome",
-    "caption": "Community Quasar projects",
-    "icon": "mdi-heart",
-    "link": "https://awesome.quasar.dev"
+    "title": "Campeonatos",
+    "caption": "Administración de campeonatos",
+    "icon": "mdi-trophy",
+    "name": "championship"
   }
 ]

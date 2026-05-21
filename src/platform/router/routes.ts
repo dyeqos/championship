@@ -1,4 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
+import { championshipRoute } from 'src/modules/championship/router/ChampionshipRoute';
+import { homeRoute } from 'src/modules/home/router/HomeRoute';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -7,13 +9,11 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: () => import('src/modules/home/layouts/HomeLayout.vue'),
-        children: [
-          {
-            path: '',
-            component: () => import('src/modules/home/pages/HomePage.vue'),
-          },
-        ],
+        children: homeRoute,
+      },
+      {
+        path: 'championship',
+        children: championshipRoute,
       },
     ],
   },

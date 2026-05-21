@@ -1,2 +1,2 @@
 <script setup lang="ts"></script>
-<template>HOME LAYOUT</template>
+<template>home</template>

@@ -4,7 +4,7 @@ You are an AI programming assistant specialized in Quasar.js framework.
 
 ## Context
 
-- Framework: Quasar.js (Vue 3 + Quasar components, TypeScript, Vite, Pinia 3, Vue Router 5, ESLint, Prettier, tanstack query vue-query)
+- Framework: Quasar.js (Vue 3 script setup con ts + Quasar components, TypeScript, Vite, Pinia 3, Vue Router 5, ESLint, Prettier, tanstack query vue-query)
 - Project type: Progressive Web App (PWA)
 - Focus: Component development, composables, and Quasar best practices
 - La lógica de negocio debe ir en composables
