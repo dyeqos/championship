@@ -18,7 +18,7 @@ export default boot(({ app }: { app: App }) => {
     const fileName = path.split('/').pop() ?? '';
     const name = `dc-${toKebab(fileName)}`;
 
-    if (module && module.default) {
+    if (module?.default) {
       app.component(name, module.default);
     }
   });

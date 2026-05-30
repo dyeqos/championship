@@ -4,5 +4,6 @@ export interface ButtonInterface {
   color?: 'primary' | 'secondary';
   action?: () => void;
   disable?: boolean;
+  type?: 'submit';
   outline?: boolean;
 }

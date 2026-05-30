@@ -1,6 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { championshipRoute } from 'src/modules/championship/router/ChampionshipRoute';
 import { homeRoute } from 'src/modules/home/router/HomeRoute';
+import { teamRoute } from 'src/modules/team/router/TeamRoute';
+import { playerRoute } from 'src/modules/player/router/PlayerRoute';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -14,6 +16,18 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'championship',
         children: championshipRoute,
+      },
+      {
+        path: 'team',
+        children: teamRoute,
+      },
+      {
+        path: 'team',
+        children: teamRoute,
+      },
+      {
+        path: 'player',
+        children: playerRoute,
       },
     ],
   },

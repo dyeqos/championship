@@ -42,7 +42,9 @@ export default defineConfigWithVueTs(
     },
   },
   // https://github.com/vuejs/eslint-config-typescript
-  vueTsConfigs.recommendedTypeChecked,
+  // Use the non-type-checked config to avoid requiring parserOptions.project
+  // which can cause runtime errors in some dev setups.
+  vueTsConfigs.recommended,
 
   {
     languageOptions: {

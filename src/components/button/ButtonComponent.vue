@@ -14,6 +14,7 @@ const handleClick = () => {
   <q-btn
     dense
     no-caps
+    :type="props.type ?? 'button'"
     :outline="props.outline"
     :text-color="props.color === 'secondary' ? 'primary' : 'white'"
     :label="props.label"

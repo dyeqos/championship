@@ -10,5 +10,17 @@
     "caption": "Administración de campeonatos",
     "icon": "mdi-trophy",
     "name": "championship"
+  },
+  {
+    "title": "Equipos",
+    "caption": "Administración de equipos",
+    "icon": "mdi-account-group",
+    "name": "team"
+  },
+  {
+    "title": "Jugadores",
+    "caption": "Administración de jugadores",
+    "icon": "mdi-account",
+    "name": "player"
   }
 ]

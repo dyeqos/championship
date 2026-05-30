@@ -27,7 +27,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error), // eslint-disable-line @typescript-eslint/prefer-promise-reject-errors
+  (error) => Promise.reject(error),
 );
 
 // Interceptor de response: manejo global de errores
@@ -61,7 +61,7 @@ api.interceptors.response.use(
     } else {
       notifyError('Error desconocido');
     }
-    return Promise.reject(error); // eslint-disable-line @typescript-eslint/prefer-promise-reject-errors
+    return Promise.reject(error);
   },
 );
 
