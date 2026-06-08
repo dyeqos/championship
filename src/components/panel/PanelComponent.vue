@@ -1,24 +1,11 @@
 <script setup lang="ts">
+import { getButtonProps } from 'src/platform/tools/utils/ButtonUtil';
 import type { PanelInterface } from './PanelInterface';
-import type { ButtonInterface } from '../button/ButtonInterface';
 
 const props = defineProps<PanelInterface>();
 
 const handleActionButtonClick = () => {
   props.actionButton?.action?.();
-};
-
-const getButtonProps = (button: ButtonInterface): ButtonInterface => {
-  return {
-    ...(button.label !== undefined && { label: button.label }),
-    ...(button.icon !== undefined && { icon: button.icon }),
-    ...(button.color !== undefined && { color: button.color }),
-    ...(button.disable !== undefined && { disable: button.disable }),
-    ...(button.outline !== undefined && { outline: button.outline }),
-    action: () => {
-      button.action?.();
-    },
-  };
 };
 </script>
 

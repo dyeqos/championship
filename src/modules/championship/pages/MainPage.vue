@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import ChampionshipCard from '../components/ChampionshipCardComponent.vue';
+import ChampionshipForm from '../components/ChampionshipFormComponent.vue';
 
 const algo = () => console.log('Algo');
+const showModal = ref(false);
 </script>
 <template>
   <dc-panel
     :title="'Campeonatos'"
     :caption="'Configuraciones'"
-    :actionButton="{ label: 'Crear Campeonato', color: 'primary', action: algo }"
+    :actionButton="{
+      label: 'Crear Campeonato',
+      color: 'primary',
+      action: () => {
+        showModal = true;
+      },
+    }"
     :actions="[
       { label: 'Editar', color: 'primary', action: algo },
       { label: 'Eliminar', color: 'secondary', action: algo },
@@ -46,4 +55,22 @@ const algo = () => console.log('Algo');
       />
     </div>
   </dc-panel>
+
+  <dc-modal
+    :actions="[
+      {
+        label: 'Guardar',
+        action: () => {
+          showModal = false;
+        },
+      },
+    ]"
+    :size="'medium'"
+    :show="showModal"
+    :title="'Crear Campeonato'"
+    @close="() => (showModal = false)"
+    @update:show="showModal = $event"
+  >
+    <ChampionshipForm />
+  </dc-modal>
 </template>

@@ -16,9 +16,6 @@ const mappedOptions = computed(
     })) ?? [],
 );
 
-const optionLabel = 'label';
-const optionValue = 'value';
-
 const internalValue = computed({
   get: () => props.modelValue,
   set: (value) => {
@@ -30,14 +27,17 @@ const internalValue = computed({
 <template>
   <q-select
     v-model="internalValue"
+    class="q-pa-xs"
     dense
-    options-dense
+    emit-value
     filled
+    map-options
+    option-label="label"
+    option-value="value"
+    options-dense
     :clearable="clearable"
     :label="label"
     :multiple="multiple"
-    :option-label="optionLabel"
-    :option-value="optionValue"
     :options="mappedOptions"
     :outlined="outlined"
     :placeholder="placeholder"
