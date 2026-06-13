@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
+import { getParamOptions } from 'src/platform/tools/utils/ParamUtil';
 import type { ChampionshipFormInterface } from '../interfaces/ChampionshipFormInterface';
 
 const championship = ref<ChampionshipFormInterface>({
@@ -10,17 +11,18 @@ const championship = ref<ChampionshipFormInterface>({
   category: null,
   gender: null,
 });
-const currency = ref<number | null>(null);
+const { data: championshipOptions } = getParamOptions('CHAMPIONSHIP');
+const { data: categoryOptions } = getParamOptions('CATEGORY');
 </script>
 <template>
   <q-form>
     <div class="row">
-      <!-- <dc-select
+      <dc-select
         v-model="championship.name"
         class="col-xs-12 col-sm-6"
         :label="'Campeonato'"
-        :options="[{ value: '2', description: 'asdf' }]"
-      ></dc-select> -->
+        :options="championshipOptions"
+      ></dc-select>
       <dc-select
         v-model="championship.management"
         class="col-xs-12 col-sm-6"
@@ -40,7 +42,7 @@ const currency = ref<number | null>(null);
         v-model="championship.category"
         class="col-xs-12 col-sm-6"
         :label="'Categoría'"
-        :options="[{ value: '2', description: 'asdf' }]"
+        :options="categoryOptions"
       ></dc-select>
       <dc-select
         v-model="championship.gender"
@@ -48,9 +50,6 @@ const currency = ref<number | null>(null);
         :label="'Género'"
         :options="[{ value: 'M', description: 'Masculino' }]"
       ></dc-select>
-      <dc-input v-model="currency" class="col-xs-12 col-sm-6" :label="'Moneda'"></dc-input>
-      <dc-person-search class="col-xs-12 col-sm-6"></dc-person-search>
     </div>
   </q-form>
-  <pre>{{ { ...championship, currency } }}</pre>
 </template>

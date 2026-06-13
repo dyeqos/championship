@@ -26,13 +26,13 @@
         "title": "Jugadores",
         "caption": "Administración de jugadores",
         "icon": "mdi-account-multiple",
-        "name": "player"
+        "name": "person-player"
       },
       {
         "title": "Entrenadores",
         "caption": "Administración de entrenadores",
         "icon": "mdi-account-tie",
-        "name": "coach"
+        "name": "person-coach"
       }
     ]
   }

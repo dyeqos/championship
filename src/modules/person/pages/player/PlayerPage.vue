@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FilterPlayerComponent from '../components/FilterPlayerComponent.vue';
-import PlayersComponent from '../components/PlayersComponent.vue';
-import players from '../json/players';
+import FilterPlayerComponent from '../../components/FilterPlayerComponent.vue';
+import PlayersComponent from '../../components/PlayersComponent.vue';
+import players from '../../json/players';
 </script>
 
 <template>
