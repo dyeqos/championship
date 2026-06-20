@@ -1,55 +1,53 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { championshipStore } from '../store/ChampionshipStore';
 import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
 import { getParamOptions } from 'src/platform/tools/utils/ParamUtil';
-import type { ChampionshipFormInterface } from '../interfaces/ChampionshipFormInterface';
+import { getRomanOptions } from 'src/platform/tools/utils/RomanUtil';
 
-const championship = ref<ChampionshipFormInterface>({
-  name: null,
-  management: null,
-  version: null,
-  category: null,
-  gender: null,
-});
+const store = championshipStore();
 const { data: championshipOptions } = getParamOptions('CHAMPIONSHIP');
 const { data: categoryOptions } = getParamOptions('CATEGORY');
+const versionOptions = getRomanOptions(10);
 </script>
 <template>
-  <q-form>
-    <div class="row">
-      <dc-select
-        v-model="championship.name"
-        class="col-xs-12 col-sm-6"
-        :label="'Campeonato'"
-        :options="championshipOptions"
-      ></dc-select>
-      <dc-select
-        v-model="championship.management"
-        class="col-xs-12 col-sm-6"
-        :label="'Gestión'"
-        :options="getManagementYears()"
-      ></dc-select>
-      <dc-select
-        v-model="championship.version"
-        class="col-xs-12 col-sm-6"
-        :label="'Versión'"
-        :options="[
-          { value: 1, description: 'I' },
-          { value: 2, description: 'II' },
-        ]"
-      ></dc-select>
-      <dc-select
-        v-model="championship.category"
-        class="col-xs-12 col-sm-6"
-        :label="'Categoría'"
-        :options="categoryOptions"
-      ></dc-select>
-      <dc-select
-        v-model="championship.gender"
-        class="col-xs-12 col-sm-6"
-        :label="'Género'"
-        :options="[{ value: 'M', description: 'Masculino' }]"
-      ></dc-select>
-    </div>
-  </q-form>
+  <div class="row">
+    <dc-select
+      v-model="store.championship.name"
+      class="col-xs-12 col-sm-6"
+      :label="'Campeonato'"
+      :options="championshipOptions"
+      :required="true"
+    ></dc-select>
+    <dc-select
+      v-model="store.championship.management"
+      class="col-xs-12 col-sm-6"
+      :label="'Gestión'"
+      :options="getManagementYears()"
+      :required="true"
+    ></dc-select>
+    <dc-select
+      v-model="store.championship.version"
+      class="col-xs-12 col-sm-6"
+      :label="'Versión'"
+      :options="versionOptions"
+      :required="true"
+    ></dc-select>
+    <dc-select
+      v-model="store.championship.category"
+      class="col-xs-12 col-sm-6"
+      :label="'Categoría'"
+      :options="categoryOptions"
+      :required="true"
+    ></dc-select>
+    <dc-select
+      v-model="store.championship.gender"
+      class="col-xs-12 col-sm-6"
+      :label="'Género'"
+      :options="[
+        { value: 1, description: 'Masculino' },
+        { value: 2, description: 'Femenino' },
+      ]"
+      :required="true"
+    ></dc-select>
+  </div>
 </template>

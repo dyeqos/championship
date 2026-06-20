@@ -7,6 +7,7 @@ export const getButtonProps = (button: ButtonInterface): ButtonInterface => {
     ...(button.color !== undefined && { color: button.color }),
     ...(button.disable !== undefined && { disable: button.disable }),
     ...(button.outline !== undefined && { outline: button.outline }),
+    ...(button.type !== undefined && { type: button.type }),
     action: () => {
       button.action?.();
     },

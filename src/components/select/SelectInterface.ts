@@ -10,6 +10,9 @@ export interface SelectBaseInterface {
   showValue?: boolean;
   clearable?: boolean;
   outlined?: boolean;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
 }
 
 export interface SingleSelectInterface extends SelectBaseInterface {

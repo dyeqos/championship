@@ -1,10 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { championshipStore } from '../store/ChampionshipStore';
+import { useChampionship } from '../composables/useChampionship';
 import ChampionshipCard from '../components/ChampionshipCardComponent.vue';
 import ChampionshipForm from '../components/ChampionshipFormComponent.vue';
+import { hideLoading, showLoading } from 'src/platform/tools/utils/LoadingUtil';
 
-const algo = () => console.log('Algo');
 const showModal = ref(false);
+const store = championshipStore();
+const { createChampionship } = useChampionship();
+
+const createChampionshipAction = async () => {
+  try {
+    showLoading();
+    await createChampionship.mutateAsync(store.championship);
+  } finally {
+    hideLoading();
+  }
+};
 </script>
 <template>
   <dc-panel
@@ -17,10 +30,6 @@ const showModal = ref(false);
         showModal = true;
       },
     }"
-    :actions="[
-      { label: 'Editar', color: 'primary', action: algo },
-      { label: 'Eliminar', color: 'secondary', action: algo },
-    ]"
   >
     <div class="row">
       <ChampionshipCard
@@ -60,9 +69,8 @@ const showModal = ref(false);
     :actions="[
       {
         label: 'Guardar',
-        action: () => {
-          showModal = false;
-        },
+        type: 'submit',
+        action: createChampionshipAction,
       },
     ]"
     :size="'medium'"

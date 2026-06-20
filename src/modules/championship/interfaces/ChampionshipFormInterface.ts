@@ -1,8 +1,8 @@
 export interface ChampionshipFormInterface {
-  id?: string;
+  id?: string | null;
   name: string | null;
   management: number | null;
   version: number | null;
   category: string | null;
-  gender: string | null;
+  gender: number | null;
 }

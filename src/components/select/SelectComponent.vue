@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { SelectInterface } from './SelectInterface';
+import { requiredRule } from 'src/platform/tools/utils/RulesUtil';
 
 const props = defineProps<SelectInterface>();
 
@@ -22,12 +23,22 @@ const internalValue = computed({
     emit('update:modelValue', value as string | number | Array<string | number> | null);
   },
 });
+
+const rules = computed(() => {
+  const result = [];
+
+  if (props.required) {
+    result.push(requiredRule);
+  }
+
+  return result;
+});
 </script>
 
 <template>
   <q-select
     v-model="internalValue"
-    class="q-pa-xs"
+    class="q-pa-xs q-mb-sm"
     dense
     emit-value
     filled
@@ -41,6 +52,7 @@ const internalValue = computed({
     :options="mappedOptions"
     :outlined="outlined"
     :placeholder="placeholder"
+    :rules="rules"
     :use-chips="multiple"
     :use-input="filterable"
   />
