@@ -11,6 +11,7 @@ export const championshipStore = defineStore('championshipStore', () => {
     version: null,
     category: null,
     gender: null,
+    dateInit: null,
   });
   const championships = ref<ChampionshipInterface[]>([]);
 

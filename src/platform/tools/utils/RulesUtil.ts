@@ -1,3 +1,5 @@
+import { isValidDate } from '../validations/DateValidation';
+
 export const requiredRule = (value: unknown) => !!value || 'Campo obligatorio';
 
 export const minLengthRule = (min: number) => (value: string) =>
@@ -5,3 +7,6 @@ export const minLengthRule = (min: number) => (value: string) =>
 
 export const maxLengthRule = (max: number) => (value: string) =>
   !value || value.length <= max || `Máximo ${max} caracteres`;
+
+export const dateRule = (value: string) =>
+  !value || isValidDate(value) || 'Fecha inválida, use DD/MM/YYYY';

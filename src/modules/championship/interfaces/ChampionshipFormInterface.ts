@@ -5,4 +5,5 @@ export interface ChampionshipFormInterface {
   version: number | null;
   category: string | null;
   gender: number | null;
+  dateInit: string | null;
 }

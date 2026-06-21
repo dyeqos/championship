@@ -2,12 +2,10 @@
 import { championshipStore } from '../store/ChampionshipStore';
 import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
 import { getParamOptions } from 'src/platform/tools/utils/ParamUtil';
-import { getRomanOptions } from 'src/platform/tools/utils/RomanUtil';
 
 const store = championshipStore();
 const { data: championshipOptions } = getParamOptions('CHAMPIONSHIP');
 const { data: categoryOptions } = getParamOptions('CATEGORY');
-const versionOptions = getRomanOptions(10);
 </script>
 <template>
   <div class="row">
@@ -25,13 +23,11 @@ const versionOptions = getRomanOptions(10);
       :options="getManagementYears()"
       :required="true"
     ></dc-select>
-    <dc-select
-      v-model="store.championship.version"
+    <dc-date
+      v-model="store.championship.dateInit"
       class="col-xs-12 col-sm-6"
-      :label="'Versión'"
-      :options="versionOptions"
-      :required="true"
-    ></dc-select>
+      :label="'Fecha de Inicio'"
+    ></dc-date>
     <dc-select
       v-model="store.championship.category"
       class="col-xs-12 col-sm-6"
@@ -50,4 +46,5 @@ const versionOptions = getRomanOptions(10);
       :required="true"
     ></dc-select>
   </div>
+  {{ store.championship }}
 </template>

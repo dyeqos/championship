@@ -1,5 +1,6 @@
 import type BadgeComponent from './components/badge/BadgeComponent.vue';
 import type ButtonComponent from './components/button/ButtonComponent.vue';
+import type DateComponent from './components/date/DateComponent.vue';
 import type InputComponent from './components/input/InputComponent.vue';
 import type ModalComponent from './components/modal/ModalComponent.vue';
 import type PanelComponent from './components/panel/PanelComponent.vue';
@@ -10,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     'dc-badge': typeof BadgeComponent;
     'dc-button': typeof ButtonComponent;
+    'dc-date': typeof DateComponent;
     'dc-input': typeof InputComponent;
     'dc-modal': typeof ModalComponent;
     'dc-panel': typeof PanelComponent;
