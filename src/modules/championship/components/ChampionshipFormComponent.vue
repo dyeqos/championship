@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { championshipStore } from '../store/ChampionshipStore';
+import { getGender } from 'src/platform/tools/utils/GenderUtil';
 import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
 import { getParamOptions } from 'src/platform/tools/utils/ParamUtil';
 
@@ -39,12 +40,8 @@ const { data: categoryOptions } = getParamOptions('CATEGORY');
       v-model="store.championship.gender"
       class="col-xs-12 col-sm-6"
       :label="'Género'"
-      :options="[
-        { value: 1, description: 'Masculino' },
-        { value: 2, description: 'Femenino' },
-      ]"
+      :options="getGender()"
       :required="true"
     ></dc-select>
   </div>
-  {{ store.championship }}
 </template>

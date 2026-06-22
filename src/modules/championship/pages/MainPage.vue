@@ -2,13 +2,15 @@
 import { ref } from 'vue';
 import { championshipStore } from '../store/ChampionshipStore';
 import { useChampionship } from '../composables/useChampionship';
-import ChampionshipCard from '../components/ChampionshipCardComponent.vue';
+import { useGetChampionships } from '../composables/useGetChampionships';
+import Championships from '../components/ChampionshipsComponent.vue';
 import ChampionshipForm from '../components/ChampionshipFormComponent.vue';
 import { hideLoading, showLoading } from 'src/platform/tools/utils/LoadingUtil';
 
 const showModal = ref(false);
 const store = championshipStore();
 const { createChampionship } = useChampionship();
+const { data: championships } = useGetChampionships();
 
 const createChampionshipAction = async () => {
   try {
@@ -31,38 +33,7 @@ const createChampionshipAction = async () => {
       },
     }"
   >
-    <div class="row">
-      <ChampionshipCard
-        class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
-        :championship="{
-          id: 1,
-          title: 'Villa Dolores',
-          caption: '2026 - I',
-          isActive: true,
-          progress: 25,
-          startDate: '2024-01-01',
-          endDate: '2024-12-31',
-          totalTeams: 15,
-          tags: ['En curso', 'Sub 18'],
-        }"
-      />
-      <ChampionshipCard
-        v-for="championship in [1, 2, 3]"
-        class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
-        :key="championship"
-        :championship="{
-          id: championship,
-          title: 'Villa Auquisamaña ' + championship,
-          caption: 'Descripción del campeonato ' + championship,
-          isActive: championship % 2 === 0,
-          progress: championship * 25,
-          startDate: '2024-01-01',
-          endDate: '2024-12-31',
-          totalTeams: championship * 4,
-          tags: [championship % 2 === 0 ? 'En curso' : 'Próximo', 'Sub 18'],
-        }"
-      />
-    </div>
+    <Championships :championships="championships ?? []" />
   </dc-panel>
 
   <dc-modal

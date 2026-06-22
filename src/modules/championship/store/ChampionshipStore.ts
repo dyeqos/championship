@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import type { ChampionshipInterface } from '../interfaces/ChampionshipInterface';
+import type { Championship } from '../interfaces/ChampionshipInterface';
 import type { ChampionshipFormInterface } from '../interfaces/ChampionshipFormInterface';
 
 export const championshipStore = defineStore('championshipStore', () => {
@@ -13,7 +13,7 @@ export const championshipStore = defineStore('championshipStore', () => {
     gender: null,
     dateInit: null,
   });
-  const championships = ref<ChampionshipInterface[]>([]);
+  const championships = ref<Championship[]>([]);
 
   return {
     championship,

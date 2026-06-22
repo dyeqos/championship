@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ChampionshipInterface } from '../interfaces/ChampionshipInterface';
+import type { Championship } from '../interfaces/ChampionshipInterface';
 
-const props = defineProps<{ championship: ChampionshipInterface }>();
+const props = defineProps<{ championship: Championship }>();
 
 const formatDate = (date: string) =>
   new Date(date).toLocaleDateString('es-ES', {
@@ -10,8 +10,8 @@ const formatDate = (date: string) =>
     day: 'numeric',
   });
 
-const statusLabel = props.championship.isActive ? 'Activo' : 'Inactivo';
-const statusColor = props.championship.isActive ? 'positive' : 'negative';
+const statusLabel = props.championship.state ? 'Activo' : 'Inactivo';
+const statusColor = props.championship.state ? 'positive' : 'negative';
 </script>
 
 <template>
@@ -20,7 +20,7 @@ const statusColor = props.championship.isActive ? 'positive' : 'negative';
       <q-card-section class="q-pa-md">
         <div class="row justify-between">
           <div class="col" style="min-height: 64px">
-            <div class="text-h5 text-weight-bold">{{ props.championship.title }}</div>
+            <div class="text-h5 text-weight-bold">{{ props.championship.name.name }}</div>
           </div>
           <div class="row items-start">
             <dc-badge :label="statusLabel" :color="statusColor" />
@@ -28,8 +28,8 @@ const statusColor = props.championship.isActive ? 'positive' : 'negative';
         </div>
 
         <div class="col-12">
-          <div v-if="props.championship.caption" class="text-caption q-mt-xs">
-            {{ props.championship.caption }}
+          <div v-if="props.championship.name.description" class="text-caption q-mt-xs">
+            {{ props.championship.name.description }}
           </div>
           <dc-badge
             v-for="tag in props.championship.tags"
@@ -44,9 +44,9 @@ const statusColor = props.championship.isActive ? 'positive' : 'negative';
 
       <q-card-section class="q-px-md q-pt-xs">
         <div class="">
-          <div class="text-right text-overline">{{ props.championship.progress }}%</div>
+          <div class="text-right text-overline">{{ props.championship.progress ?? 0 }}%</div>
           <q-linear-progress
-            :value="props.championship.progress / 100"
+            :value="props.championship.progress ?? 0"
             color="primary"
             track-color="grey-3"
             rounded
@@ -58,7 +58,7 @@ const statusColor = props.championship.isActive ? 'positive' : 'negative';
         <div class="row items-center justify-between q-mt-md">
           <div>
             <div class="text-subtitle2 text-weight-bold">Inicio</div>
-            <div>{{ formatDate(props.championship.startDate) }}</div>
+            <div>{{ formatDate(props.championship.dateInit) }}</div>
           </div>
           <div>
             <div class="text-subtitle2 text-weight-bold">Equipos</div>

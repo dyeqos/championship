@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query';
 import { championshipService } from '../services/ChampionshipService';
-import type { ChampionshipInterface } from '../interfaces/ChampionshipInterface';
+import type { Championship } from '../interfaces/ChampionshipInterface';
 
 export const useChampionship = () => {
   const queryClient = useQueryClient();
   const createChampionship = useMutation({
     mutationFn: championshipService.createChampionship,
 
-    onSuccess: (newChampionship: ChampionshipInterface) => {
+    onSuccess: (newChampionship: Championship) => {
       queryClient.invalidateQueries({
         queryKey: ['championships'],
       });
 
-      queryClient.setQueryData<ChampionshipInterface[]>(['championships'], (oldData) =>
+      queryClient.setQueryData<Championship[]>(['championships'], (oldData) =>
         oldData ? [...oldData, newChampionship] : [newChampionship],
       );
     },
