@@ -6,4 +6,7 @@ export interface InputInterface {
   disabled?: boolean;
   isCurrency?: boolean;
   placeholder?: string;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
 }

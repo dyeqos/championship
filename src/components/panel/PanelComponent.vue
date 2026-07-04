@@ -20,11 +20,8 @@ const handleActionButtonClick = () => {
       </div>
       <dc-button
         v-if="props.actionButton"
-        color="primary"
-        :label="props.actionButton.label ?? 'Acción'"
-        :action="handleActionButtonClick"
-        :outline="false"
         class="q-ml-md"
+        v-bind="getButtonProps({ ...props.actionButton, action: handleActionButtonClick })"
       />
     </q-card-section>
 

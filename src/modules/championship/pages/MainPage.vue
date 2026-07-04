@@ -27,6 +27,7 @@ const createChampionshipAction = async () => {
     :caption="'Configuraciones'"
     :actionButton="{
       label: 'Crear Campeonato',
+      icon: 'mdi-soccer-field',
       color: 'primary',
       action: () => {
         showModal = true;

@@ -1,3 +1,11 @@
+import type { ChampionshipState } from '../enums/ChampionshipStateEnum';
+
 export interface ChampionshipFilter {
-  algo?: string;
+  name?: string;
+
+  management?: number[];
+
+  category?: string;
+
+  state?: ChampionshipState;
 }

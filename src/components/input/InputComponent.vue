@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, toRefs } from 'vue';
 import type { InputInterface, InputModelValue } from './InputInterface';
+import { maxLengthRule, minLengthRule, requiredRule } from 'src/platform/tools/utils/RulesUtil';
 
 const props = defineProps<InputInterface>();
 
@@ -94,18 +95,35 @@ function onBlur() {
     localValue.value = props.modelValue == null ? '' : String(props.modelValue);
   }
 }
+
+const rules = computed(() => {
+  const result = [];
+
+  if (props.required) {
+    result.push(requiredRule);
+  }
+  if (props.maxLength) {
+    result.push(maxLengthRule(props.maxLength));
+  }
+  if (props.minLength) {
+    result.push(minLengthRule(props.minLength));
+  }
+
+  return result;
+});
 </script>
 
 <template>
   <q-input
-    :model-value="localValue"
-    class="q-pa-xs"
-    :input-class="isCurrency ? 'text-right' : ''"
+    class="q-pa-xs q-mb-sm"
     dense
     filled
+    :model-value="localValue"
+    :input-class="isCurrency ? 'text-right' : ''"
     :label="label"
     :placeholder="placeholder"
     :disable="disabled"
+    :rules="rules"
     @update:model-value="onInput($event)"
     @focus="onFocus"
     @blur="onBlur"

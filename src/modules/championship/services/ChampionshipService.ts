@@ -8,7 +8,7 @@ export const championshipService = {
     const { data } = await api.post('/championship', payload);
     return data;
   },
-  async getChampionships(params: ChampionshipFilter): Promise<Championship[]> {
+  async getChampionships(params?: ChampionshipFilter): Promise<Championship[]> {
     const { data } = await api.get('/championship', {
       params,
     });
