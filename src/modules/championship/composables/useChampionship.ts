@@ -18,8 +18,28 @@ export const useChampionship = () => {
     },
   });
 
+  const updateChampionship = useMutation({
+    mutationFn: championshipService.updateChampionship,
+
+    onSuccess: (updatedChampionship: Championship) => {
+      queryClient.invalidateQueries({
+        queryKey: ['championships'],
+      });
+
+      queryClient.setQueryData<Championship[]>(['championships'], (oldData) =>
+        oldData
+          ? oldData.map((championship) =>
+              championship.id === updatedChampionship.id ? updatedChampionship : championship,
+            )
+          : [updatedChampionship],
+      );
+    },
+  });
+
   return {
     createChampionship,
     isPending: createChampionship.isPending,
+    updateChampionship,
+    isUpdating: updateChampionship.isPending,
   };
 };

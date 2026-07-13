@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { championshipStore } from '../store/ChampionshipStore';
 import type { Championship } from '../interfaces/ChampionshipInterface';
 
 const props = defineProps<{ championship: Championship }>();
+
+const store = championshipStore();
 
 const formatDate = (date: string) =>
   new Date(date).toLocaleDateString('es-ES', {
@@ -79,7 +82,12 @@ const statusColor = props.championship.state ? 'positive' : 'negative';
           rounded
           :icon="'mdi-pencil'"
           color="secondary"
-          :action="() => {}"
+          :action="
+            () => {
+              store.setChampionship(props.championship);
+              store.showUpdateModal = true;
+            }
+          "
           :outline="true"
         />
       </q-card-actions>

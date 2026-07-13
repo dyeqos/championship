@@ -14,4 +14,12 @@ export const championshipService = {
     });
     return data;
   },
+  async updateChampionship(payload: ChampionshipFormInterface): Promise<Championship> {
+    const { id, ...rest } = payload;
+    if (!id) {
+      throw new Error('Championship ID is required for update.');
+    }
+    const { data } = await api.patch(`/championship/${id}`, rest);
+    return data;
+  },
 };
