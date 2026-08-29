@@ -1,6 +1,16 @@
 <script setup lang="ts">
-import { SexEnum } from '../enums/SexEnum';
 import { personStore } from '../store/PersonStore';
+import usePerson from '../composables/usePerson';
+import { SexEnum } from '../enums/SexEnum';
+import { hideLoading, showLoading } from 'src/platform/tools/utils/LoadingUtil';
+
+const { searchPerson } = usePerson();
+
+const onBlur = async () => {
+  showLoading();
+  await searchPerson();
+  hideLoading();
+};
 
 const store = personStore();
 </script>
@@ -11,20 +21,25 @@ const store = personStore();
       v-model="store.person.numberIdentifier"
       label="Cédula Identidad"
       type="number"
+      :disabled="store.disableFormSearch"
+      @blur="onBlur"
     ></dc-input>
     <dc-input
       class="col-xs-12 col-sm-6"
       v-model="store.person.lastName"
+      :disabled="store.disableFormSearch"
       label="Apellido Paterno"
     ></dc-input>
     <dc-input
       class="col-xs-12 col-sm-6"
       v-model="store.person.secondLastName"
+      :disabled="store.disableFormSearch"
       label="Apellido Materno"
     ></dc-input>
     <dc-input
       class="col-xs-12 col-sm-6"
       v-model="store.person.firstName"
+      :disabled="store.disableFormSearch"
       label="Nombre(s)"
     ></dc-input>
     <dc-date
