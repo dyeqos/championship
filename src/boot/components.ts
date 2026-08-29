@@ -13,11 +13,12 @@ export default boot(({ app }: { app: App }) => {
   const components = import.meta.glob<{ default: any }>('../components/**/*.vue', {
     eager: true,
   });
+  const blackList = ['PersonModalComponent.vue'];
 
   Object.entries(components).forEach(([path, module]) => {
     const fileName = path.split('/').pop() ?? '';
     const name = `dc-${toKebab(fileName)}`;
-    if (module?.default) {
+    if (module?.default && !blackList.includes(fileName)) {
       app.component(name, module.default);
     }
   });

@@ -3,7 +3,7 @@ import { teamService } from '../services/TeamService';
 
 const { getTeams } = teamService;
 
-export const useGetChampionships = (championshipFilter?: any) => {
+export const useGetChampionships = (championshipFilter?: unknown) => {
   return useQuery({
     queryKey: ['championships', championshipFilter],
     queryFn: () => getTeams(championshipFilter),

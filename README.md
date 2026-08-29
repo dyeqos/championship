@@ -41,3 +41,8 @@ quasar build
 ### Customize the configuration
 
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
+pnpm exec sonar-scanner-npm \
+-Dsonar.host.url=http://localhost:9005 \
+-Dsonar.token=sqp_6684814d026e4ebb7ae76c88518b72111c04c350 \
+-Dsonar.projectKey=vue-championship

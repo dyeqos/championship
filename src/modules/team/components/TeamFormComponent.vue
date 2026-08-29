@@ -1,30 +1,23 @@
 <script lang="ts" setup>
 import { teamStore } from '../store/TeamStore';
-import { useGetChampionships } from 'src/modules/championship/composables/useGetChampionships';
-import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
-import { ChampionshipState } from 'src/modules/championship/enums/ChampionshipStateEnum';
-import type { ChampionshipFilter } from 'src/modules/championship/interfaces/ChampionshipFilterInterface';
+// import { useGetChampionships } from 'src/modules/championship/composables/useGetChampionships';
+// import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
+// import { ChampionshipState } from 'src/modules/championship/enums/ChampionshipStateEnum';
+// import type { ChampionshipFilter } from 'src/modules/championship/interfaces/ChampionshipFilterInterface';
+import { ref } from 'vue';
 
 const store = teamStore();
 
-const championshipFilter: ChampionshipFilter = {
-  management: getManagementYears().map((v) => v.value),
-  state: ChampionshipState.DRAFT,
-};
+// const championshipFilter: ChampionshipFilter = {
+//   management: getManagementYears().map((v) => v.value),
+//   state: ChampionshipState.DRAFT,
+// };
 
-const { data: championshipFiltered } = useGetChampionships(championshipFilter);
+//const { data: championshipFiltered } = useGetChampionships(championshipFilter);
+const algo = ref<number | null>(null);
 </script>
 <template>
-  <dc-select
-    v-model="store.team.championship"
-    :label="'Campeonato'"
-    :options="
-      championshipFiltered?.map((c) => ({
-        value: c.id,
-        description: c.name.name + ' ' + c.management + '-' + c.version,
-      })) ?? []
-    "
-  ></dc-select>
+  <dc-select v-model="store.team.championship" :label="'Campeonato'" :options="[]"></dc-select>
   <dc-input v-model="store.team.name" :label="'Nombre'" :max-length="50" :min-length="3"></dc-input>
   <dc-select
     v-model="store.team.teamUser"
@@ -36,4 +29,7 @@ const { data: championshipFiltered } = useGetChampionships(championshipFilter);
       },
     ]"
   ></dc-select>
+
+  <dc-person-search v-model="algo" label="Carnet Entrenador"></dc-person-search>
+  {{ algo }}
 </template>

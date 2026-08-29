@@ -4,7 +4,6 @@ export interface InputInterface {
   label?: string;
   modelValue?: InputModelValue;
   disabled?: boolean;
-  isCurrency?: boolean;
   placeholder?: string;
   required?: boolean;
   minLength?: number;

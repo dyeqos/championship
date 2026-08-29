@@ -1,0 +1,6 @@
+projectKey=vue-championship
+serverUrl=http://localhost:9005
+serverVersion=26.8.0.126808
+dashboardUrl=http://localhost:9005/dashboard?id=vue-championship
+ceTaskId=82ea2327-ff21-42ae-9a20-9260c7fdc2a2
+ceTaskUrl=http://localhost:9005/api/ce/task?id=82ea2327-ff21-42ae-9a20-9260c7fdc2a2

@@ -41,7 +41,9 @@ const actionButtons = async (e: Event, action?: () => void, type?: 'submit' | 'b
     v-model="showModal"
     @hide="showModal = false"
     :full-width="props.size === 'full'"
-    persistent
+    :persistent="false"
+    transition-show="scale"
+    transition-hide="scale"
   >
     <q-card flat :style="getSizeClass">
       <q-form ref="form" @submit.prevent>

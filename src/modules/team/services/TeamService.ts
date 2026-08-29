@@ -7,7 +7,7 @@ export const teamService = {
     const { data } = await api.post('/team', payload);
     return data;
   },
-  async getTeams(params?: any): Promise<TeamInterface[]> {
+  async getTeams(params?: unknown): Promise<TeamInterface[]> {
     const { data } = await api.get('/team', {
       params,
     });
