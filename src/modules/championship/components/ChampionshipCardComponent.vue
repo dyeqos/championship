@@ -1,17 +1,13 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import { championshipStore } from '../store/ChampionshipStore';
+import { routeName } from '../../team/constants/RouteConstant';
 import type { Championship } from '../interfaces/ChampionshipInterface';
 
+const router = useRouter();
 const props = defineProps<{ championship: Championship }>();
 
 const store = championshipStore();
-
-const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString('es-ES', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
 
 const statusLabel = props.championship.state ? 'Activo' : 'Inactivo';
 const statusColor = props.championship.state ? 'positive' : 'negative';
@@ -61,7 +57,7 @@ const statusColor = props.championship.state ? 'positive' : 'negative';
         <div class="row items-center justify-between q-mt-md">
           <div>
             <div class="text-subtitle2 text-weight-bold">Inicio</div>
-            <div>{{ formatDate(props.championship.dateInit) }}</div>
+            <div>{{ props.championship.dateInit }}</div>
           </div>
           <div>
             <div class="text-subtitle2 text-weight-bold">Equipos</div>
@@ -73,10 +69,18 @@ const statusColor = props.championship.state ? 'positive' : 'negative';
       <q-card-actions class="justify-center">
         <dc-button
           rounded
-          :icon="'mdi-eye'"
+          :icon="'mdi-shield-outline'"
           :color="'secondary'"
-          :action="() => {}"
+          :action="
+            () => {
+              router.push({
+                name: routeName.teamMain,
+                query: { championshipId: props.championship.id },
+              });
+            }
+          "
           :outline="true"
+          :tooltip="'Ver los equipos'"
         />
         <dc-button
           rounded
@@ -89,6 +93,7 @@ const statusColor = props.championship.state ? 'positive' : 'negative';
             }
           "
           :outline="true"
+          :tooltip="'Editar campeonato'"
         />
       </q-card-actions>
     </q-card>

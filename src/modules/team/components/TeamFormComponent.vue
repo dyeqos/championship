@@ -1,35 +1,31 @@
 <script lang="ts" setup>
 import { teamStore } from '../store/TeamStore';
-// import { useGetChampionships } from 'src/modules/championship/composables/useGetChampionships';
-// import { getManagementYears } from 'src/platform/tools/utils/ManagementUtil';
-// import { ChampionshipState } from 'src/modules/championship/enums/ChampionshipStateEnum';
-// import type { ChampionshipFilter } from 'src/modules/championship/interfaces/ChampionshipFilterInterface';
-import { ref } from 'vue';
+import { useGetChampionships } from 'src/modules/championship/composables/useGetChampionships';
 
 const store = teamStore();
 
-// const championshipFilter: ChampionshipFilter = {
-//   management: getManagementYears().map((v) => v.value),
-//   state: ChampionshipState.DRAFT,
-// };
-
-//const { data: championshipFiltered } = useGetChampionships(championshipFilter);
-const algo = ref<number | null>(null);
+const { data: championshipFiltered } = useGetChampionships({});
 </script>
 <template>
-  <dc-select v-model="store.team.championship" :label="'Campeonato'" :options="[]"></dc-select>
-  <dc-input v-model="store.team.name" :label="'Nombre'" :max-length="50" :min-length="3"></dc-input>
   <dc-select
-    v-model="store.team.teamUser"
-    :label="'Entrenador'"
-    :options="[
-      {
-        value: '69cd8a3c4ce53223b5c80e52',
-        description: 'Diego calvi',
-      },
-    ]"
+    v-model="store.team.championshipId"
+    :label="'Campeonato'"
+    :options="
+      championshipFiltered?.map((c) => ({
+        description: c.name.description,
+        value: c.id,
+      })) ?? []
+    "
   ></dc-select>
+  <dc-input
+    v-model="store.team.name"
+    :label="'Nombre Equipo'"
+    :max-length="50"
+    :min-length="3"
+  ></dc-input>
 
-  <dc-person-search v-model="algo" label="Carnet Entrenador"></dc-person-search>
-  {{ algo }}
+  <dc-person-search
+    v-model="store.team.numberIdentifier"
+    label="Carnet Entrenador"
+  ></dc-person-search>
 </template>

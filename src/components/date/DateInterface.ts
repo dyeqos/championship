@@ -5,6 +5,6 @@ export interface DateInterface {
   min?: string | null;
   max?: string | null;
   name?: string;
-  disable?: boolean;
+  disabled?: boolean;
   required?: boolean;
 }

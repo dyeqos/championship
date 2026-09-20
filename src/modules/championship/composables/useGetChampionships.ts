@@ -6,7 +6,7 @@ const { getChampionships } = championshipService;
 
 export const useGetChampionships = (championshipFilter?: ChampionshipFilter) => {
   return useQuery({
-    queryKey: ['championships', championshipFilter],
+    queryKey: ['championships', championshipFilter ?? {}],
     queryFn: () => getChampionships(championshipFilter),
   });
 };

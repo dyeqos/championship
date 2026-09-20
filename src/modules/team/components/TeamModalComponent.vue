@@ -21,6 +21,7 @@ const emit = defineEmits<{
 const create = async () => {
   try {
     showLoading();
+    console.log(store.team);
     await createTeam.mutateAsync(store.team);
   } finally {
     hideLoading();
@@ -33,6 +34,13 @@ const create = async () => {
     :title="'Crear Equipo'"
     :size="'small'"
     :actions="[
+      {
+        label: 'Cancelar',
+        color: 'secondary',
+        action: () => {
+          emit('update:show', false);
+        },
+      },
       {
         label: 'Guardar',
         type: 'submit',

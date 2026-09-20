@@ -4,7 +4,7 @@ import type { ButtonInterface } from './ButtonInterface';
 const props = defineProps<ButtonInterface>();
 
 const handleClick = () => {
-  if (!props.disable) {
+  if (!props.disabled) {
     props.action?.();
   }
 };
@@ -20,7 +20,11 @@ const handleClick = () => {
     :label="props.label"
     :icon="props.icon"
     :color="props.color ?? 'primary'"
-    :disable="props.disable"
+    :disable="props.disabled"
     @click="handleClick"
-  />
+  >
+    <q-tooltip v-if="props.tooltip" :delay="400">
+      {{ props.tooltip }}
+    </q-tooltip>
+  </q-btn>
 </template>

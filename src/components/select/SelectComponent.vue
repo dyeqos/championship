@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { SelectInterface } from './SelectInterface';
 import { requiredRule } from 'src/platform/tools/utils/RulesUtil';
+import type { SelectInterface } from './SelectInterface';
 
 const props = defineProps<SelectInterface>();
 
@@ -47,6 +47,7 @@ const rules = computed(() => {
     option-value="value"
     options-dense
     :clearable="clearable"
+    :disable="disabled"
     :label="label"
     :multiple="multiple"
     :options="mappedOptions"

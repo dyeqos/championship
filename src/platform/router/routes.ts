@@ -22,10 +22,6 @@ const routes: RouteRecordRaw[] = [
         children: teamRoute,
       },
       {
-        path: 'team',
-        children: teamRoute,
-      },
-      {
         path: 'person',
         children: personRoute,
       },

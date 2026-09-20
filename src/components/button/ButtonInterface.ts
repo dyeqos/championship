@@ -3,7 +3,8 @@ export interface ButtonInterface {
   icon?: string;
   color?: 'primary' | 'secondary';
   action?: () => void;
-  disable?: boolean;
+  disabled?: boolean;
   type?: 'submit';
   outline?: boolean;
+  tooltip?: string;
 }

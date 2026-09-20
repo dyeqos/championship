@@ -11,6 +11,7 @@ export interface SelectBaseInterface {
   clearable?: boolean;
   outlined?: boolean;
   required?: boolean;
+  disabled?: boolean;
   minLength?: number;
   maxLength?: number;
 }

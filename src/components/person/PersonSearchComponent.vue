@@ -3,13 +3,13 @@ import { computed, nextTick, ref } from 'vue';
 import { personStore } from 'src/modules/person/store/PersonStore';
 import PersonForm from 'src/modules/person/components/PersonFormComponent.vue';
 import { requiredRule } from 'src/platform/tools/utils/RulesUtil';
-import type { PersonSearch } from './PersonSearchInterface';
+import type { InputModelValue, PersonSearch } from './PersonSearchInterface';
 
 const storePerson = personStore();
 const props = defineProps<PersonSearch>();
 const showModal = ref(false);
 
-const localValue = ref<number | null>(props.modelValue == null ? null : Number(props.modelValue));
+const localValue = ref<InputModelValue>(props.modelValue??null);
 const input = ref<HTMLInputElement | null>(null);
 
 const rules = computed(() => {
@@ -30,6 +30,7 @@ const openPersonModal = () => {
 const onShowDialog = async () => {
   await nextTick();
 };
+
 </script>
 <template>
   <q-input
@@ -54,7 +55,17 @@ const onShowDialog = async () => {
           showModal = false;
           storePerson.clearPerson();
         },
+        color: 'secondary',
         label: 'Cerrar',
+      },
+      {
+        action: () => {
+          showModal = false;
+          props.modelValue = storePerson.person.numberIdentifier;
+          storePerson.clearPerson();
+        },
+        disabled: storePerson.person.id == null,
+        label: 'Seleccionar',
       },
     ]"
     @show="onShowDialog"

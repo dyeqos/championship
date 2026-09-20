@@ -1,6 +1,6 @@
 export interface TeamForm {
   id: string | null;
   name: string | null;
-  teamUser: string | null;
-  championship: string | null;
+  numberIdentifier: number | null;
+  championshipId: string | null;
 }

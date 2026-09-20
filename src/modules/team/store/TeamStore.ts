@@ -6,11 +6,17 @@ export const teamStore = defineStore('teamStore', () => {
   const team = ref<TeamForm>({
     id: null,
     name: null,
-    teamUser: null,
-    championship: null,
+    numberIdentifier: null,
+    championshipId: null,
   });
+
+  const teams = ref<TeamForm[]>([]);
 
   return {
     team,
+    teams,
+    setTeams(data: TeamForm[]) {
+      teams.value = data;
+    },
   };
 });

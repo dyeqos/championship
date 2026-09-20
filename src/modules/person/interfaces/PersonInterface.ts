@@ -1,4 +1,4 @@
-import type { SexEnum } from '../enums/SexEnum';
+import type { GenderEnum } from '../enums/GenderEnum';
 
 export interface PersonInterface {
   id: string | null;
@@ -6,6 +6,6 @@ export interface PersonInterface {
   lastName: string | null;
   firstName: string | null;
   secondLastName: string | null;
-  birthDate: string | null; // ISO date string (DD/MM/YYYY)
-  sex: SexEnum;
+  birthdate: string | null; // ISO date string (DD/MM/YYYY)
+  gender: GenderEnum;
 }

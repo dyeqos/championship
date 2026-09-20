@@ -54,7 +54,7 @@ const rules = computed(() => {
     v-model="pickerValue"
     :label="props.label"
     :placeholder="props.placeholder"
-    :disable="props.disable"
+    :disable="props.disabled"
     :name="props.name"
     :rules="rules"
     :mask="'NN/NN/NNNN'"

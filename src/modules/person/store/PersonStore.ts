@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { SexEnum } from '../enums/SexEnum';
+import { GenderEnum } from '../enums/GenderEnum';
 import type { PersonInterface } from '../interfaces/PersonInterface';
 
 export const personStore = defineStore('personStore', () => {
@@ -10,8 +10,8 @@ export const personStore = defineStore('personStore', () => {
     lastName: null,
     firstName: null,
     secondLastName: null,
-    birthDate: null,
-    sex: SexEnum.MALE,
+    birthdate: null,
+    gender: GenderEnum.MALE,
   });
 
   const disableFormSearch = ref(false);
@@ -32,8 +32,8 @@ export const personStore = defineStore('personStore', () => {
         lastName: null,
         firstName: null,
         secondLastName: null,
-        birthDate: null,
-        sex: SexEnum.MALE,
+        birthdate: null,
+        gender: GenderEnum.MALE,
       };
     },
   };
