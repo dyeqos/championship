@@ -41,7 +41,7 @@ const actionButtons = async (e: Event, action?: () => void, type?: 'submit' | 'b
     v-model="showModal"
     @hide="showModal = false"
     :full-width="props.size === 'full'"
-    :persistent="false"
+    :persistent="true"
     transition-show="scale"
     transition-hide="scale"
   >
@@ -54,7 +54,16 @@ const actionButtons = async (e: Event, action?: () => void, type?: 'submit' | 'b
               {{ props.caption }}
             </div>
           </div>
-          <q-btn icon="mdi-close" flat round dense v-close-popup />
+          <q-btn v-if="!props.close" icon="mdi-close" flat round dense v-close-popup />
+          <q-btn
+            v-else
+            icon="mdi-close"
+            flat
+            round
+            dense
+            :v-close-popup="!props.close"
+            @click="props.close()"
+          />
         </q-card-section>
 
         <q-card-section class="q-pa-md">

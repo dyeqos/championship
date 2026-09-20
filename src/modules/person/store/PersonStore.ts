@@ -35,6 +35,7 @@ export const personStore = defineStore('personStore', () => {
         birthdate: null,
         gender: GenderEnum.MALE,
       };
+      disableFormSearch.value = false;
     },
   };
 });

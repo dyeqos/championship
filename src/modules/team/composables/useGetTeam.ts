@@ -14,7 +14,15 @@ export const useGetTeams = (teamFilter: TeamFilter) => {
       showLoading();
       const response = await getTeams(filter);
       console.log(response);
-      store.setTeams(response);
+      store.setTeams(
+        response.map((team) => ({
+          personId: team.teamUser, // Map the teamUser to personId
+          id: team.id,
+          name: team.name,
+          championshipId: team.championship,
+          personName: null, // Map the personName if available
+        })),
+      );
       hideLoading();
       return response;
     } finally {

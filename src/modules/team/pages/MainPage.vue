@@ -22,5 +22,4 @@ const show = ref(false);
     <TeamsComponent :teams="[]" />
   </dc-panel>
   <TeamModalComponent :show="show" @update:show="show = $event" />
-  {{ show }}
 </template>

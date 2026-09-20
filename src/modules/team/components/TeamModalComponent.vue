@@ -23,6 +23,8 @@ const create = async () => {
     showLoading();
     console.log(store.team);
     await createTeam.mutateAsync(store.team);
+    store.clearTeam();
+    emit('update:show', false);
   } finally {
     hideLoading();
   }
@@ -39,6 +41,7 @@ const create = async () => {
         color: 'secondary',
         action: () => {
           emit('update:show', false);
+          store.clearTeam();
         },
       },
       {
