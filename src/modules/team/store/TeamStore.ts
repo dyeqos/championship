@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { TeamForm } from '../interfaces/TeamFormInterface';
+import type { TeamResponse } from '../interfaces/TeamInterface';
 
 export const teamStore = defineStore('teamStore', () => {
   const team = ref<TeamForm>({
@@ -11,12 +12,12 @@ export const teamStore = defineStore('teamStore', () => {
     personName: null,
   });
 
-  const teams = ref<TeamForm[]>([]);
+  const teams = ref<TeamResponse[]>([]);
 
   return {
     team,
     teams,
-    setTeams(data: TeamForm[]) {
+    setTeams(data: TeamResponse[]) {
       teams.value = data;
     },
     clearTeam() {
