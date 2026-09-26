@@ -16,7 +16,7 @@ onBeforeMount(() => {
   state.value = route.query.state ? Number(route.query.state) : null;
   management.value = route.query.management ? Number(route.query.management) : null;
   if (championshipId.value || state.value || management.value) {
-    refetchTeams();
+    fetchTeams();
   }
 });
 
@@ -29,7 +29,7 @@ const management = ref<number | null>(
 );
 
 const { data: championshipOptions } = useGetChampionships({});
-const { refetch: refetchTeams } = useGetTeams();
+const { fetchTeams } = useGetTeams();
 
 const clearFilters = () => {
   championshipId.value = null;
@@ -51,7 +51,7 @@ const searchTeams = async () => {
       management: management.value,
     },
   });
-  await refetchTeams();
+  await fetchTeams();
 };
 </script>
 <template>

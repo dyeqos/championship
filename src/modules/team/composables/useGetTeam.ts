@@ -1,14 +1,17 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useQuery } from '@tanstack/vue-query';
+import { useQueryClient } from '@tanstack/vue-query';
 import { teamStore } from '../store/TeamStore';
 import { teamService } from '../services/TeamService';
 import { hideLoading, showLoading } from 'src/platform/tools/utils/LoadingUtil';
 import type { TeamFilter } from '../interfaces/TeamFilterInterface';
 
+const getTeamsQueryKey = (filter: TeamFilter) => ['teams', filter] as const;
+
 export const useGetTeams = () => {
   const route = useRoute();
   const store = teamStore();
+  const queryClient = useQueryClient();
   const { getTeams } = teamService;
 
   const teamFilter = computed<TeamFilter>(() => ({
@@ -19,18 +22,22 @@ export const useGetTeams = () => {
   const getTeamsFn = async (filter: TeamFilter) => {
     try {
       showLoading();
-      const response = await getTeams(filter);
-      store.setTeams(response);
-      return response;
+      return await getTeams(filter);
     } finally {
       hideLoading();
     }
   };
 
-  return useQuery({
-    queryKey: computed(() => ['teams', teamFilter.value]),
-    queryFn: () => getTeamsFn(teamFilter.value),
-    enabled: false,
-    retry: false,
-  });
+  const fetchTeams = async () => {
+    const filter = teamFilter.value;
+    const response = await queryClient.fetchQuery({
+      queryKey: getTeamsQueryKey(filter),
+      queryFn: () => getTeamsFn(filter),
+      retry: false,
+    });
+    store.setTeams(response);
+    return response;
+  };
+
+  return { fetchTeams };
 };
